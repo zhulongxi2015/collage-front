@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button onclick="getList();">aa</button>
+ <div class="layui-card-body" style="height: 323.011px; width: 94.5176%;">
+       
+      <div class="layui-row">
+        
+       <div class="" style="height: 175px;">
+         
+        <img  src="" /> 
+       </div> 
+	   <div class="" style="height: 175px;">
+	     
+	    <img  src="" /> 
+	   </div> 
+	   <div class="" style="height: 175px;">
+	     
+	    <img  src="" /> 
+	   </div> 
+	   <div class="" style="height: 175px;">
+	     
+	    <img  src="" /> 
+	   </div> 
+	   <div class="" style="height: 175px;">
+	     
+	    <img  src="" /> 
+	   </div> 
+	   <div class="" style="height: 175px;">
+	     
+	    <img  src="" /> 
+	   </div> 
+	   </div>
+	   </div>
+<input type="text" id="userId" />
+	</body>
+	<script src="../js/axios.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<!-- <script src="../../js/public.js">></script> -->
+	<script>
+		// axios.defaults.baseURI = 'http://127.0.0.1:80';
+		const instance = axios.create({
+		  baseURL: 'http://127.0.0.1:80'
+		});
+	var userId = document.getElementById('userId').text;
+	// Document doc = $("div.layui-card-body").children("div.").children("img");
+	 function myFunction(value, index, array) {
+		var a =  $("div.layui-card-body").children("div.layui-row").children("div").children("img");
+		var b = a.toArray();
+		$("img:eq("+index+")").attr("src",value.lego);
+		// console.log(a[index].src);
+		//console.log(b[index]);
+		//console.log($("img"));
+		 console.log(index);
+	   console.log(value.lego);
+	 };
+	 
+		function getList() {
+			var usernameValue = $("#userId").val();
+		
+			instance.post('/college/school/list', {
+			 
+			  })
+			  .then(function (response) {
+				//拿到school的name值
+				  usernameValue = response.data.rows[0].name;
+				  response.data.rows.forEach(myFunction);
+				 //  console.log(usernameValue);
+				 // $("#userId").val(usernameValue);
+				 //    console.log($("#userId").val());
+
+			
+			    console.log(response);
+			  })
+			  .catch(function (error) {
+			    console.log(error);
+			  });
+		};
+		
+		
+	</script>
+</html>

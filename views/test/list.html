@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>测试列表</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+	</head>
+	<div>学校列表</div>
+	<!-- <form> -->
+		<table id="school" border="1">
+			<th>list</th>
+			<tr>
+				<td><a id="aa1" href="http://127.0.0.1:8848/college/views/test/edit.html" onclick="changeUrl();">aaaa</a>
+		</td>
+				<td><a id="aa" href="http://127.0.0.1/college/school/1" onclick="changeUrl();">get1</a></td>
+				<td><button onclick="getinfo1();">info1</button></td>
+				<td><button onclick="getinfo2();">info2</button></td>
+				<td><button onclick="getList();">list</button></td>
+			</tr>
+		</table>
+	<!-- </form> -->
+	<body>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script src="../../js/axios.js"></script>
+		<script>
+			// axios.defaults.baseURI = 'http://127.0.0.1:80';
+			const instance = axios.create({
+				baseURL: 'http://localhost:80'
+			});
+		
+			function myFunction(value, index, array) {
+				// $("#college").children("div").children("img:eq("+index+")").attr("src",value.lego);
+				$("#table tr td:eq(" + index + ")").attr("src", value.lego);
+		
+				console.log(index);
+				console.log(value.lego);
+			};
+		
+			function getList() {
+				//	var usernameValue = $("#userId").val();
+		
+		let params = new URLSearchParams()
+					
+		   params.append('html', JSON.stringify(this.html))
+				instance.post('/college/school/list',params, {
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+					})
+					.then(function(response) {
+						//拿到school的name值
+						//	  usernameValue = response.data.rows[0].name;
+						response.data.rows.forEach(myFunction);
+		
+		
+						console.log(response);
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+			};
+		function getinfo1(){
+			 let params = new URLSearchParams()
+			
+			    params.append('html', JSON.stringify("1"))
+			// 上面的请求也可以这样做
+            instance.get('/college/school/1',params,{
+				// headers: {
+				// 	host: '172.0.0.1',
+				// 	referer: '127.0.0.1'
+				// 	}	  
+				 
+		   });
+		};
+		function getinfo2(){
+			$.ajax({
+			    url: 'http://localhost/college/school/1',
+			    type: 'get',
+			 //   dataType: 'jsonp',  // 请求方式为jsonp
+			    // jsonpCallback: "onBack",    // 自定义回调函数名
+			 //    data: {
+					
+				// }
+			});
+		};
+			//window.onload = getList();
+			function changeUrl(){
+				var href = $("#aa1").attr('href');
+				console.log(href);
+				$("#aa1").attr("href",href+"?id=1");
+				console.log($("#aa1").val());
+			}
+		</script>
+	</body>
+</html>

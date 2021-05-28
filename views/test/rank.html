@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>专业排名</title>
+		<meta name="description" content="MagicalCoder,表单布局器,基于jquery,Vue的可视化拖拽布局器">
+		<meta name="keywords" content="MagicalCoder,表单布局器,基于jquery,Vue的可视化拖拽布局器">
+		<link rel="stylesheet" type="text/css" href="../../js/layui1/code.css">
+		<link rel="stylesheet" type="text/css" href="../../js/layui1/laydate.css">
+		<link rel="stylesheet" type="text/css" href="../../js/layui1/layer.css">
+		<link rel="stylesheet" type="text/css" href="../../js/layui1/layui.css">
+		<link rel="stylesheet" type="text/css" href="../../js/layui1/magicalcoder.css">
+	</head>
+	<body>
+		<div id="magicalDragScene" class="mc-root mc-ui-absolute-pane" style="height: 907px;"> 
+		   <div class="layui-fluid layui-bg-white" style="left: 1.02041%; top: 0%; width: 97.9611%; height: 1368.01px; padding: 1px; position: absolute;"> 
+		    <div class="layui-row"> 
+		     <div class="layui-col-xs12 mc-ui-flex-center" style="width: 100%; height: 46px; margin-bottom: 4px; background-color: rgb(26, 145, 133);text-align:center;　display:block;vertical-align: middle;"> 
+		      <label style="font-size: 15px; font-weight: bolder; word-spacing: 2px; text-align: center; direction: ltr; text-indent: 0px; color: rgb(244, 241, 241);">赣州中专网</label> 
+		     </div> 
+		    </div> 
+		    <ul class="layui-nav layui-bg-green" lay-shrink="all"> 
+		     <li class="layui-nav-item"> <a style="color: rgb(255, 255, 255); font-size: 15px;" href="../college/rank.html">院校排名</a> </li> 
+		     <li class="layui-nav-item"> <a style="color: rgb(255, 255, 255); font-size: 15px;" href="#">专业排名</a> </li> 
+		     <li id="uuid46cecb9c-8087-462a-af1a-8b4d2fd111f2" class="layui-nav-item"> <a style="color: rgb(255, 255, 255); font-size: 15px;" href="../qa/index.html">招生问答</a> </li> 
+		     <li id="uuid869e90bf-fba8-4d20-ac4e-c4c35640fe53" class="layui-nav-item"></li> 
+		     <li id="uuidb7826605-54be-42b9-a2bf-b6a3408f2f99" class="layui-nav-item"></li> 
+		    </ul> 
+		    <div class="layui-row" style="height: 23.0114px; top: 0px; margin-top: 8px;"> 
+		     <div class="layui-col-xs12 mc-ui-flex-start layui-col-lg12" style="height: 21px; background-color: rgb(255, 247, 247);"> 
+		      <span class="layui-breadcrumb"> <a href="../index.html">首页</a> <a>专业排名</a> </span> 
+		     </div> 
+		    </div> 
+		    <div class="layui-row" id="content" style="min-height: 208.011px; margin-top: 10px;"> 
+			
+		      <!--<div class="layui-col-xs12 school-profession" id="card" style="height: 210px;"> 
+		      <div class="layui-card"> 
+		       <div class="layui-card-header mc-ui-flex-center school-name" style="background-color: rgb(26, 145, 133); color: rgb(255, 255, 255); font-weight: bold;">
+		         <span></span>
+		       </div> 
+		       <div class="layui-card-body" style="height: 137.011px;"> 
+					
+		       </div> 
+		      </div>
+		     </div> 
+		   </div> -->
+		  </div>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/layui/layui.all.js"></script>
+		<script src="../../js/axios.js"></script>
+		<script>
+				const instance = axios.create({
+					baseURL: 'http://127.0.0.1:80'
+				});
+			
+				function collegeList(value, index, array) {
+					// if(index>0){
+					//  $(".school-profession:eq(" + (index-1)+ ")").after($(".school-profession")[0].outerHTML);
+					// }
+				//	$(".school-name span:eq(" + index + ")").text(value.name);
+					
+				//	$(".tt:eq(" + index+ ")" + " tr td a span").text(index);
+					
+					// var rowCount  = value.professionList.lenght/3;
+					// if(value.professionList%3 >0){
+					// 	rowCount++;
+					// }
+					// for(var i = 0; i<rowCount; i++){
+					// 	$(".tt:eq(" +index + ")" + " tr:eq(" + parseInt((i+1)/3) + ")" + " td:eq(" + ((i+1)%3-1) + ") a").text(value.professionList[i%3].name);
+					// }
+				//	for( i=0;i<value.professionList.length;i++){
+						
+						
+					//	if(i<9){
+					//		console.log("i:"+i);
+					//	console.log("/:"+parseInt((i+1)/3));	
+					//	console.log("%:"+((i+1)%3-1));	
+				// $(".tt:eq(" + index+ ")" + " tr:eq(" + parseInt((i+1)/3) + ")" + " td:eq(" + ((i+1)%3-1) + ") a").text(value.professionList[i].name);
+				// $(".tt:eq(" + index+ ")" + " tr:eq(" + parseInt((i+1)/3) + ")" + " td:eq(" + ((i+1)%3-1) + ") a").attr("href","detail.html?id="+value.professionList[i].id);
+							//$("tbody tr:eq(" + i<3?0:((i+1)/3) + ")" + "td:eq(" + i<3?i:((i+1)%3) + ")").text(value.professionList[i].name);
+				//		}
+			//		}	
+				};
+			
+				function getCollegeList() {
+			// $("#content div:eq(1)").append($("#txt").outerHTML);
+					var html =``;
+					instance.post('/college/school/list1', {
+						})
+						.then(function(response) {
+							console.log(11,response.data);
+							for(let i=0;i<response.data.rows.length;i++){
+								console.log('school',response.data.rows[i]);
+								let obj =response.data.rows[i];
+								let majoy =``;
+								for(let j=0;j<obj.professionList.length;j++){
+									console.log('majoy',obj.professionList[j]);
+									let temp = obj.professionList[j];
+									if(temp!=''&&temp)
+									majoy+=`<div style="color:#666666;height:30px;float:left;width:30%;text-align: center;line-height: 30px;padding:5px;border:#e6e6e6 1px solid"><a href="../profession/detail.html?id=${temp.id}">${temp.name}</a></div>`
+								}
+								if(obj.professionList.length>0)
+								html+= `<div class="layui-col-xs12 school-profession" id="card" style="height: 210px;"> 
+										<div class="layui-card"> 
+										   <div class="layui-card-header mc-ui-flex-center school-name" style="background-color: rgb(26, 145, 133); color: white; font-weight: bold;">
+											 <span>${obj.name}</span>
+										   </div> 
+										   <div class="layui-card-body" style="height: 137.011px;width:95%;">
+											`+majoy+`
+										   </div> 
+										  </div> 	
+										  </div> 	
+										  </div> 	
+									  </div> 
+										  `
+							// $(".layui-card-body").append(buildTable(response.data.rows[i]));
+							}
+							document.getElementById("content").innerHTML=html;
+						// 	$(".school-profession:eq(" + (i-1)+ ")").after($(".school-profession")[0].outerHTML);
+						
+						// 	}
+							//response.data.rows.forEach(collegeList);
+						})
+						.catch(function(error) {
+							console.log(error);
+						});
+				};
+			//	function buildTable (college){
+					// var pros = college.professionList;
+					// console.log(pros);
+					// var count = pros.length;
+					// var rowCount  = parseInt(count/3);
+					// if(count%3 >0){
+					// 	rowCount++;
+					// }
+					// console.log('rowCount:'+rowCount);
+					// console.log('count%3:'+count%3);
+					// var table ='<table class="layui-table>"';
+					// table+='<tbody class="tt">'
+					// for(i =0;i<rowCount; i++){
+
+					// 	table+='<tr>';
+					// 	for(j = 0; j<count%3; j++){
+							
+					// 		if(college.professionList[i*3 + j]){
+					// 			console.log(college.professionList[i*3 + j]);
+					// 			console.log(college.professionList[i*3 + j].id);
+					// 			console.log(college.professionList[i*3 + j].name);
+					// 			table+='<td style="width: 29.519%; font-weight: lighter; font-size: 2px;">'
+					// 			table+='<a style="font-weight: lighter;" href="detail.html?id='+college.professionList[i*3 + j].id+'">';
+					// 			table += college.professionList[i*3 + j].name;
+					// 			table+='</a>'
+					// 			table+='</td>'
+					// 		}
+					// 	}
+						
+					// 	table+='</tr>'
+					// }
+					// table+='</tbody>'
+					// table+='</talbe>';
+					// console.log(table)
+					// return table;
+				//}
+				window.onload = getCollegeList();
+		</script>
+	</body>
+</html>

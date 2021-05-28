@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>学校详情-赣南中专网</title>
+    <meta name="description" content="赣南中专，为你打造专业的中专就业指导！">
+    <meta name="keywords" content="赣州中专，赣州技校，赣州职业学校，赣州中职院校，江西中专，赣南中专，赣州哪个中专好，中专什么专业好，赣州中专排名">
+    <link rel="stylesheet" type="text/css" href="../../js/layui1/code.css">
+    <link rel="stylesheet" type="text/css" href="../../js/layui1/laydate.css">
+    <link rel="stylesheet" type="text/css" href="../../js/layui1/layer.css">
+    <link rel="stylesheet" type="text/css" href="../../js/layui1/layui.css">
+    <link rel="stylesheet" type="text/css" href="../../js/layui1/magicalcoder.css">
+    <style>
+        .layui-nav .layui-nav-item{
+            margin: 0px -10px 0px -10px;
+        }
+        .layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after{
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="magicalDragScene" class="mc-root mc-ui-absolute-pane" style="height: 907px;">
+    <div class="layui-fluid layui-bg-white"
+         style="left: 1.02041%; top: 0%; width: 97.9611%; height: 1368.01px; padding: 1px; position: absolute;">
+        <div class="layui-row">
+            <div class="layui-col-xs12 mc-ui-flex-center"
+                 style="width: 100%; height: 46px; margin-bottom: 4px; background-color: rgb(26, 145, 133);">
+                <label class="layui-form-label mc-ui-flex-center"
+                       style="font-size: 15px; font-weight: bolder; word-spacing: 2px; text-align: center; direction: ltr; text-indent: 0px; color: rgb(244, 241, 241);">
+                    赣州中专网</label>
+            </div>
+        </div>
+        <ul class="layui-nav layui-bg-green " style="padding: 0 0;" >
+            <li class="layui-nav-item"> <a style="color: rgb(255, 255, 255); font-size: 15px;" href="/">首页</a> </li>
+            <li class="layui-nav-item"> <a style="color: rgb(255, 255, 255); font-size: 15px;"
+                                           href="/college/rank.html">中专排名</a> </li>
+            <li class="layui-nav-item"> <a style="color: rgb(255, 255, 255); font-size: 15px;"
+                                           href="/college/rank.html">技能培训</a> </li>
+
+            <li class="layui-nav-item">
+                <a href="javascript:;" style="color: rgb(255, 255, 255); font-size: 15px;">在线服务</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/qa/index.html" style="font-size: 15px;">招生问答</a></dd>
+                    <dd><a href="/apply/index.html" style="font-size: 15px;">在线报名</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <div class="layui-row" style="height: 23.0114px; top: 0px; margin-top: 8px;">
+            <div class="layui-col-xs12 mc-ui-flex-start layui-col-lg12"
+                 style="height: 21px; background-color: rgb(255, 247, 247);">
+		 <span class="layui-breadcrumb">
+		 <a href="../index.html">首页</a>
+		 <a href="index.html">招生资讯</a>
+		 </span></div>
+        </div>
+        <div class="layui-row" style="height: 767px; margin-top: 10px;">
+            <div class="layui-col-xs12" style="height: 734px;">
+                <table class="layui-table">
+                    <tbody>
+                    <tr>
+                        <td class="mc-ui-flex-start mc-ui-absolute-pane" style="border-style: hidden hidden dashed;">
+                            <a style="font-weight: bold; width: 51.3011%; height: 21px; position: absolute; left: 1.11111%; top: 45%;"
+                               href="detail.html">
+                                <!-- 赣州中专学校有哪些？ -->
+
+                            </a></td>
+                    </tr>
+                    <tr id="uuidb10d50fa-cbbf-4221-b088-5af9a56b7b09" style="width: 80.1754%;">
+                        <td class="mc-ui-absolute-pane"
+                            style="width: 76.8421%; height: 39px; border-style: hidden hidden dashed;">
+                            <a style="position: absolute; left: 1%; top: 25%; width: 100.929%; height: 44px;"
+                               href="detail.html">
+
+                                <!-- 赣州中专学校有哪些，小编给大家整理，赣州十八县市所有的中专学校一共加起来有40几所，每个县里基本都有一所 ...2020-05-21 -->
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/layui/layui.all.js"></script>
+<script src="../../js/axios.js"></script>
+<script src="../../js/config.js"></script>
+<script>
+    var aValue = $("layui-breadcrumb a:eq(2)").text();
+    const instance = axios.create({
+                                      baseURL: "http://" + globalConfig.host + ":" + globalConfig.port
+                                  });
+
+    function qaList(value, index, array) {
+        var href = $(".layui-table tbody tr td a").attr('href');
+        var vars = href.split("?");
+        href = vars[0];
+
+        if (index > 0) {
+            $(".layui-table:eq(" + (index - 1) + ")").after($(".layui-table")[0].outerHTML);
+        }
+        $(".layui-table tbody:eq(" + index + ") tr a").attr("href", href + "?id=" + value.id);
+        $(".layui-table tbody tr:even td a:eq(" + index + ")").text(value.contentTitle);
+        var qa = value.newsContent.replace(/<[^>]+>/g, "");
+        if (qa.length > 50) {
+            qa = qa.substring(0, 60) + "...\t" + value.createDate;
+        } else {
+            qa = qa + "...\t" + value.createDate;
+        }
+        $(".layui-table tbody tr:odd td a:eq(" + index + ")").text(qa);
+
+    };
+
+    function getAnswerList() {
+
+        instance.post('/college/news/list', {})
+            .then(function (response) {
+
+                response.data.rows.forEach(qaList);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+    window.onload = getAnswerList();
+</script>
+</body>
+</html>

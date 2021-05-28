@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button onclick="change();">加内容</button>
+		<div id="content">
+		<p>在我的后面追加一条新闻</p>
+		</div>
+		<span>疑是地上霜</span>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript">
+		function change(){
+		//在不同元素的开始位置追加内容
+		$("#content").after($("span")[0].outerHTML);
+		}
+		</script>
+		
+	</body>
+</html>

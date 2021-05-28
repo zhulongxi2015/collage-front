@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>专业详情-赣南中专网</title>
+    <meta name="description" content="赣南中专，为你打造专业的中专就业指导！">
+    <meta name="keywords" content="赣州中专，赣州技校，赣州职业学校，赣州中职院校，江西中专，赣南中专，赣州哪个中专好，中专什么专业好，赣州中专排名">
+    <link rel="stylesheet" type="text/css" href="../../js/layui1/code.css">
+    <link rel="stylesheet" type="text/css" href="../../js/layui1/laydate.css">
+    <link rel="stylesheet" type="text/css" href="../../js/layui1/layer.css">
+    <link rel="stylesheet" type="text/css" href="../../js/layui1/layui.css">
+    <link rel="stylesheet" type="text/css" href="../../js/layui1/magicalcoder.css">
+    <style>
+        .layui-nav .layui-nav-item{
+            margin: 0px -10px 0px -10px;
+        }
+        .layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after{
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="magicalDragScene" class="mc-root mc-ui-absolute-pane" style="height: 907px;">
+    <div class="layui-fluid layui-bg-white"
+         style="left: 1.02041%; top: 0%; width: 97.9611%; height: 1368.01px; padding: 1px; position: absolute;">
+        <div class="layui-row">
+            <div class="layui-col-xs12 mc-ui-flex-center"
+                 style="width: 100%; height: 46px; margin-bottom: 4px; background-color:rgb(26, 145, 133);display:block;padding-top:10px;: middle;text-align: center;">
+                <label style="font-size: 15px; font-weight: bolder; word-spacing: 2px; text-align: center; direction: ltr; text-indent: 0px; color: rgb(244, 241, 241);">赣州中专网</label>
+            </div>
+        </div>
+		<ul class="layui-nav layui-bg-green " style="padding: 0 0;" >
+			<li class="layui-nav-item"> <a style="color: rgb(255, 255, 255); font-size: 15px;" href="/">首页</a> </li>
+			<li class="layui-nav-item"> <a style="color: rgb(255, 255, 255); font-size: 15px;"
+										   href="/college/rank.html">中专排名</a> </li>
+			<li class="layui-nav-item"> <a style="color: rgb(255, 255, 255); font-size: 15px;"
+										   href="/college/rank.html">技能培训</a> </li>
+
+			<li class="layui-nav-item">
+				<a href="javascript:;" style="color: rgb(255, 255, 255); font-size: 15px;">在线服务</a>
+				<dl class="layui-nav-child">
+					<dd><a href="/qa/index.html" style="font-size: 15px;">招生问答</a></dd>
+					<dd><a href="/apply/index.html" style="font-size: 15px;">在线报名</a></dd>
+				</dl>
+			</li>
+		</ul>
+        <div class="layui-row" style="height: 23.0114px; top: 0px; margin-top: 8px;">
+            <div class="layui-col-xs12 mc-ui-flex-start layui-col-lg12"
+                 style="height: 21px; background-color: rgb(255, 247, 247);">
+		      <span class="layui-breadcrumb">
+				  <a href="../index.html">首页</a>
+				  <a href="../college/rank.html">招生学校</a>
+				   <a></a>
+				   <a>招生专业</a>
+					</span>
+            </div>
+        </div>
+        <div class="layui-row" style="margin-top: 10px; height: 1212px;">
+            <div class="layui-col-xs12 mc-ui-flex-center"
+                 style="height: 40px;text-align: center;display:block;margin:0 auto;vertical-align: middle;">
+                <label id="professionName" style="font-weight: bold; font-size: 16px; width: 17.7817%;"></label>
+            </div>
+
+            <div class="layui-col-xs12" style="height: 221px;">
+                <div class="layui-row" style="height: 224px;">
+                    <div class="layui-col-md6 layui-col-xs6" style="height: 219px; width: 57.3684%;">
+                        <img id="professionImg" style="width: 98.7768%; height: 215px;" src="../../upload/bg-16-9.png"/>
+                    </div>
+                    <div class="layui-col-md6 layui-col-xs6 mc-ui-flex-center" style="height: 216px; width: 42.0775%;">
+                        <div class="layui-row" style="height: 216px; width: 100.833%;">
+                            <div class="layui-col-xs12" style="height: 53px;">
+                                <label class="layui-form-label mc-ui-flex-start" id="year"
+                                       style="width: 87.9167%; height: 33px; font-weight: bold;"></label>
+                            </div>
+                            <div class="layui-col-xs12 mc-ui-flex-start" style="height: 62px; padding-left: 13px;">
+                                <a class="layui-btn" href="../apply/index.html">在线报名</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs12" style="height: 381px;">
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/layui/layui.all.js"></script>
+<script src="../../js/axios.js"></script>
+<script src="../../js/config.js"></script>
+<script>
+    var aValue = $("layui-breadcrumb a:eq(2)").text();
+    const instance = axios.create({
+                                      baseURL: "http://" + globalConfig.host + ":" + globalConfig.port
+                                  });
+
+    //拿到url里面的id
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) {
+                return pair[1];
+            }
+        }
+        return (false);
+    };
+
+    function getUrl() {
+        var id = getQueryVariable("id");
+
+        var url = window.location.href;
+
+        return id;
+    };
+
+    function getinfo() {
+
+        var id = getUrl();
+        instance.get('/college/profession/' + id, {
+            proxy: {
+                host: globalConfig.host,
+                port: globalConfig.port
+            }
+
+        }).then(function (response) {
+
+            $(".layui-breadcrumb a:eq(2)").text(response.data.school.name);
+            $(".layui-breadcrumb a:eq(2)").attr("href", "../college/college.html?id=" + response.data.school.id);
+            $("#professionName").text(response.data.name);
+            var processDescribe = response.data.processDescribe;
+            $(".layui-col-xs12 p").html(processDescribe);
+            $("#year").text('休学年限：' + response.data.year + '年');
+            if(response.data.processImg){
+                $("#professionImg").attr("src", response.data.processImg);
+            }
+
+        });
+    };
+    window.onload = getinfo();
+</script>
+</body>
+</html>
