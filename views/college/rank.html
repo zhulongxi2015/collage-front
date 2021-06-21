@@ -101,7 +101,7 @@
 
     function getCollegeList() {
         // $("#content div:eq(1)").append($("#txt").outerHTML);
-        instance.post('/college/school/list', {})
+        instance.post('/college/school/simpleList', {})
             .then(function (response) {
 
                 response.data.rows.forEach(collegeList);

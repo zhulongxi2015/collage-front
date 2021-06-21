@@ -6,36 +6,33 @@
 	return w;
 })(window || {});
 
-$(function(){
-	var MobileUA = (function() {
-		var ua = navigator.userAgent.toLowerCase();
-
-		var mua = {
-			IOS: /ipod|iphone|ipad/.test(ua), //iOS
-			IPHONE: /iphone/.test(ua), //iPhone
-			IPAD: /ipad/.test(ua), //iPad
-			ANDROID: /android/.test(ua), //Android Device
-			WINDOWS: /windows/.test(ua), //Windows Device
-			TOUCH_DEVICE: ('ontouchstart' in window) || /touch/.test(ua), //Touch Device
-			MOBILE: /mobile/.test(ua), //Mobile Device (iPad)
-			ANDROID_TABLET: false, //Android Tablet
-			WINDOWS_TABLET: false, //Windows Tablet
-			TABLET: false, //Tablet (iPad, Android, Windows)
-			SMART_PHONE: false //Smart Phone (iPhone, Android)
+var browser = {
+	versions: function() {
+		var u = navigator.userAgent,
+			app = navigator.appVersion;
+		return {
+			trident: u.indexOf('Trident') > -1, //IE内核
+			presto: u.indexOf('Presto') > -1, //opera内核
+			webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+			gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+			mobile: (!!u.match(/AppleWebKit.*Mobile/) || !!u.match(/Windows Phone/) || !!u.match(/Android/) || !!u.match(/MQQBrowser/)) && !u.match(/iPad/), //是否为移动终端
+			ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+			android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端
+			iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1 || u.indexOf('UCBrowser') > -1, //iPhone终端
+			iPad: u.indexOf('iPad') > -1, //是否iPad
+			webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
+			weixin: u.indexOf('MicroMessenger') > -1, //是否微信
+			qq: u.match(/\sQQ/i) == " qq" //是否QQ
 		};
+	}(),
+	language: (navigator.browserLanguage || navigator.language).toLowerCase()
+}
+//判断是否移动端
+if(browser.versions.mobile || browser.versions.iPhone || browser.versions.android || browser.versions.weixin || browser.versions.qq) {
+}else{
+	document.location.href ='http://www.gannanzz.com';
+}
 
-		mua.ANDROID_TABLET = mua.ANDROID && !mua.MOBILE;
-		mua.WINDOWS_TABLET = mua.WINDOWS && /tablet/.test(ua);
-		mua.TABLET = mua.IPAD || mua.ANDROID_TABLET || mua.WINDOWS_TABLET;
-		mua.SMART_PHONE = mua.MOBILE && !mua.TABLET;
-
-		return mua;
-	}());
-
-	if (!MobileUA.SMART_PHONE) {
-		document.location.href='http://www.gannanzz.com';
-	}
-});
 function closeConsultPop(){
 	$("#popCard").css("display","none");
 }
@@ -43,13 +40,13 @@ function closeConsultPop(){
 	var consultLink = 'http://kf.gannanzz.com/s/54146xjap';
 	var consultIcon = '\t\t<a target="_blank"\thref="'+consultLink+'" class="layui-icon'
 			 + ' layui-icon-dialogue"\n'
-					  + '\t\t   style="position:fixed; background-color:rgb(0,150, 136);top:35%; left:84%;\n'
-					  + '\t\tfont-size: 55px; border-radius: 15px; z-index: 99;"></a>';
+					  + '\t\t   style="position:fixed; background-color:#ff5722;top:35%; left:84%;\n'
+					  + '\t\tfont-size: 55px; border-radius: 15px; z-index: 99; color: white"></a>';
 	$("body").append(consultIcon);
 
 	var popHtml ='\t<div id="popCard" class="layui-row" style="position: fixed; left: 13%; top: 23%; height:'
 				 + ' 221.021px;\n'
-				 + '\t\twidth:70%; background-color: rgb(0, 150, 136);">\n'
+				 + '\t\twidth:70%; background-color: #ff5722;">\n'
 				 + '\t\t\t<div class="layui-col-md6 mc-ui-absolute-pane" style="height: 249px;">\n'
 				 + '\t\t\t\t<span onclick="closeConsultPop()" class="mc-ui-geometry-char" style="height: 20px; width:'
 				 + ' 10.0208px;'
@@ -63,7 +60,8 @@ function closeConsultPop(){
 				 + ' style="position: absolute;'
 				 + ' left:'
 				 + ' 5.12781%; top:'
-				 + ' 65.9863%; width: 35.5284%; font-weight: bold; font-size: 16px;">现在咨询</a>\n'
+				 + ' 65.9863%; width: 35.5284%; font-weight: bold; font-size: 16px; background-color: rgb(0, 150,'
+				 + ' 136)">现在咨询</a>\n'
 				 + '\t\t\t\t<a onclick="closeConsultPop()" class="layui-btn layui-btn-primary" style="position:'
 				 + ' absolute;'
 				 + ' left:'

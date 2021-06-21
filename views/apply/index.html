@@ -168,16 +168,16 @@
                                               style="position: absolute; left: 0.705882%; top: 11.9048%; width: 90.7801%; height: 45px;"
                                               placeholder="请输入内容" rows="50" cols="20" maxlength="200"></textarea>
                                 </div>
+                                <input type="hidden" name="identifyCard" value="0"/>
                             </div>
                             <div class="layui-form-item">
                                 <div class="layui-input-block">
-                                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                                    <button class="layui-btn" type="button" id="doApply" >立即提交</button>
                                     <button type="reset" class="layui-btn layui-btn-primary" onclick="resetMenu();">重置
                                     </button>
                                 </div>
                             </div>
-
-
+                        </div>
                     </form>
 
                 </div>
@@ -200,15 +200,50 @@
         var form = layui.form, layer = layui.layer;
         getCollegeList();
         //监听提交
-        form.on('submit(formDemo)', function (data) {
-            // layer.msg(JSON.stringify(data.field));
-            // return false;
-            $("form").submit();
-            // window.parent.layer.closeAll();
-            // window.location.href="../index.html";
+        // form.on('submit(formDemo)', function (data) {
+        //     // layer.msg(JSON.stringify(data.field));
+        //     // return false;
+        //     $("form").submit();
+        //     // window.parent.layer.closeAll();
+        //     // window.location.href="../index.html";
+        //
+        //     window.open("../index.html");
+        //
+        // });
+        $("#doApply").click(function(){
+            if(!$('input[name="name"]').val()){
+                alert("名字不能为空！");
+                return ;
+            }
 
-            window.open("../index.html");
+            if(!$('input[name="phone"]').val()){
+                alert("手机号不能为空！");
+                return ;
+            }
+            if(!(/^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/.test($('input[name="phone"]').val()))){
+                alert("手机号不合法！");
+                return ;
+            }
+            if(!$('select[name="schoolId"]').val()){
+                alert("报读学校不能为空！");
+                return;
+            }
 
+            if(!$('select[name="professionId"]').val() || $('select[name="professionId"]').val()=="-1"){
+                alert("报读专业不能为空！");
+                return;
+            }
+            instance.post("/college/applyInfo/add",$("form").serialize())
+            .then(function(response){
+                if(response.data.code==0){
+                    alert("报名成功！");
+                    document.location.href="../apply/index.html";
+                }else {
+                    alert("报名失败！"+ response.data.msg);
+                }
+            }).catch(function(error){
+                alert("报名失败！");
+            })
         });
         form.on('select(school)', function (data) {
 
